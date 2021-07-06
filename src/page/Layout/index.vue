@@ -16,9 +16,9 @@
         <i slot="icon" class="iconfont icon-shipin"></i>
         <span class="text">视频</span>
       </van-tabbar-item>
-      <van-tabbar-item to="user">
+      <van-tabbar-item to="/user">
         <i slot="icon" class="iconfont icon-wode"></i>
-        <span class="text">我的</span>
+        <span class="text">{{ $store.state.user ? '我的' : '未登录'}}</span>
       </van-tabbar-item>
     </van-tabbar>
   </div>
