@@ -19,7 +19,7 @@
           />
         </div>
       </div>
-      <div class="label-info-wrap">
+      <div v-if="!userInfo" class="label-info-wrap">
         <span>{{ article.aut_name }}</span>
         <span>{{ article.comm_count }}评论</span>
         <span>{{ article.pubdate | relativeTime}}</span>
@@ -42,6 +42,9 @@ export default {
     article: {
       type: Object,
       required: true,
+    },
+    userInfo: {
+      type: Object,
     }
   },
   data () {

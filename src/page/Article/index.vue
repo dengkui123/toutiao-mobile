@@ -5,6 +5,7 @@
       class="page-nav-bar"
       left-arrow
       title="黑马头条"
+      @click-left="$router.back()"
     ></van-nav-bar>
     <!-- /导航栏 -->
 
@@ -25,7 +26,12 @@
         <!-- /文章标题 -->
 
         <!-- 用户信息 -->
-        <van-cell class="user-info" center :border="false">
+        <van-cell
+          class="user-info"
+          center
+          :border="false"
+          :to="`/users/${article.aut_id}`"
+        >
           <van-image
             class="avatar"
             slot="icon"
@@ -88,6 +94,13 @@
           ref="article-content"
         ></div>
         <van-divider>正文结束</van-divider>
+        <!-- 文章评论列表 -->
+        <comment-list
+          :list="commentList"
+          :source="article.art_id"
+          @onLoad-success="totalCommentCounts = $event.total_count"
+        />
+
         <!-- 底部区域 -->
         <div class="article-bottom">
           <van-button
@@ -95,10 +108,11 @@
             type="default"
             round
             size="small"
+            @click="isPostShow = true"
           >写评论</van-button>
           <van-icon
             name="comment-o"
-            badge="123"
+            :badge="totalCommentCounts"
             color="#777"
           />
           <!-- <van-icon
@@ -117,9 +131,23 @@
             color="#777"
             name="good-job-o"
           /> -->
-          <van-icon name="share" color="#777777"></van-icon>
+          <van-icon
+            name="share"
+            color="#777777"
+          ></van-icon>
         </div>
         <!-- /底部区域 -->
+
+        <!-- 发布评论 -->
+        <van-popup
+          v-model="isPostShow"
+          position="bottom"
+        >
+          <comment-post
+            :target="article.art_id"
+            @post-success="onPostSuccess"
+          />
+        </van-popup>
       </div>
       <!-- /加载完成-文章详情 -->
 
@@ -150,12 +178,17 @@ import { ImagePreview } from 'vant';
 import FollowUser from '@/components/follow-user'
 import CollectArticle from '@/components/collect-article'
 import LikeArticle from '@/components/like-article'
+import CommentList from './components/article-comment'
+import CommentPost from './components/comment-post'
+
 export default {
   name: 'ArticleIndex',
   components: {
     FollowUser,
     CollectArticle,
     LikeArticle,
+    CommentList,
+    CommentPost,
   },
   props: {
     articleId: {
@@ -167,8 +200,11 @@ export default {
   data () {
     return {
       article: {},
-      loading: true, // 加载中的 loading 状态
+      loading: false, // 加载中的 loading 状态
       errorStatus: 0, // 失败的状态码
+      totalCommentCounts: 0,
+      isPostShow: false,
+      commentList: [],
     }
   },
   computed: {},
@@ -190,6 +226,7 @@ export default {
       }
       this.loading = false;
     },
+
     previewImages() {
       const articleContent = this.$refs['article-content'];
       const imgs = articleContent.querySelectorAll('img');
@@ -205,6 +242,13 @@ export default {
         }
       })
     },
+
+    onPostSuccess(data) {
+      // 关闭评论弹出层
+      this.isPostShow = false;
+      // 将发布内容显示到列表顶部
+      this.commentList.unshift(data.new_obj);
+    }
   },
   created () {
     this.loadArticle();

@@ -1,4 +1,6 @@
+
 <template>
+<!-- 收藏文章 -->
   <van-icon
     :class="{collected : value}"
     :name="value ? 'star':'star-o'"

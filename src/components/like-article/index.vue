@@ -1,4 +1,5 @@
 <template>
+<!-- 点赞 -->
   <van-icon
     :class="{liked : value === 1}"
     :name="value === 1 ? 'good-job':'good-job-o'"

@@ -59,6 +59,7 @@ export default {
   computed: {},
   methods: {
     async onLoad() {
+      this.loading = true;
       // 异步更新数据
       try {
         const { data } = await getArticles({

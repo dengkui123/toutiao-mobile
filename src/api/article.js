@@ -33,7 +33,7 @@ export const addCollect = target => {
 // 取消收藏文章
 export const delCollect = target => {
   return request({
-    method: 'DeLETE',
+    method: 'DELETE',
     url: `/app/v1_0/article/collections/${target}`,
   })
 }
@@ -52,7 +52,7 @@ export const addLike = target => {
 // 取消点赞文章
 export const delLike = target => {
   return request({
-    method: 'DeLETE',
+    method: 'DELETE',
     url: `/app/v1_0/article/likings/${target}`,
   })
 }

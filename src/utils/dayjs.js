@@ -6,9 +6,10 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 
 import relativeTime from 'dayjs/plugin/relativeTime'
+import localFormat from 'dayjs/plugin/localizedFormat'
 // 配置使用 处理相对时间的插件
 dayjs.extend(relativeTime)
-
+dayjs.extend(localFormat)
 // dayjs 默认语言是英文,配置为中文
 dayjs.locale('zh-cn') // 全局使用
 
@@ -20,4 +21,8 @@ dayjs.locale('zh-cn') // 全局使用
 // 过滤器的返回值会渲染到使用过滤器的模板位置
 Vue.filter('relativeTime', value => {
   return dayjs().to(dayjs(value));
+})
+
+Vue.filter('localFormat', value => {
+  return dayjs(value).format('YYYY-MM-DD')
 })
