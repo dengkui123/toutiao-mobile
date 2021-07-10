@@ -31,20 +31,20 @@
 </template>
 
 <script>
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 
 // 建立连接
-const socket = io('http://ttapi.research.itcast.cn')
+// const socket = io('http://ttapi.research.itcast.cn')
 
-socket.on('connect', function() {
-  console.log('连接建立成功了')
-});
+// socket.on('connect', function() {
+//   console.log('连接建立成功了')
+// });
 // 断开连接了
 // socket.on('disconnect', function() {
 //   console.log('断开连接了')
 // });
 
-window.socket = socket;
+// window.socket = socket;
 // 发送消息
 // socket.emit('消息类型'，消息内容)
 // socket.on('消息类型',function(data) {data消息})
