@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0dd850"],{8277:function(n,t,e){"use strict";e.r(t);var c=function(){var n=this,t=n.$createElement,e=n._self._c||t;return e("div",{staticClass:"qa-container"},[n._v(" 问答 ")])},a=[],o={name:"QaIndex",components:{},props:{},data:function(){return{}},watch:{},computed:{},methods:{},created:function(){},mounted:function(){}},u=o,s=e("2877"),d=Object(s["a"])(u,c,a,!1,null,"c7b61fc4",null);t["default"]=d.exports}}]);
+//# sourceMappingURL=chunk-2d0dd850.102489a0.js.map
