@@ -37,8 +37,12 @@ export default {
   watch: {},
   computed: {},
   methods: {},
-  created() {},
-  mounted() {},
+  created() {
+  },
+  mounted() {
+    this.$store.commit('addCachePage', 'LayoutIndex');
+    console.log('重新缓存');
+  },
 }
 </script>
 

@@ -41,7 +41,7 @@
     </div>
     <!-- 未登录 -->
     <div v-else class="header not-login">
-      <div class="login-btn" @click="$router.push('/login')">
+      <div class="login-btn" @click="$router.push('/login?redirect=/user')">
         <img class="avatar" src="~@/assets/images/avatar.jpg">
         <span class="text">登录 / 注册</span>
       </div>
@@ -62,7 +62,8 @@
     <van-cell
       class="mb-4"
       title="小智同学"
-      is-link to="/"
+      is-link
+      to="/user/chat"
     />
     <van-cell
     v-if="user"

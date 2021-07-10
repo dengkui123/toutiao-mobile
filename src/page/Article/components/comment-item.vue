@@ -108,11 +108,12 @@ export default {
     align-items: center;
   }
   .reply-btn {
-    width: 135px;
+    width: 150px;
     height: 48px;
     line-height: 48px;
     font-size: 21px;
     color: #222;
+    padding: auto 10px;
   }
   .like-btn {
     height: 30px;

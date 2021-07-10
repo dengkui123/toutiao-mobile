@@ -104,10 +104,13 @@ export default {
         console.log('登陆成功', data);
         this.$store.commit('setUser', data.data);
         this.$toast.success('登录成功');
-
+        // 清除 layout 的缓存
+        this.$store.commit('removeCachePage', 'LayoutIndex');
         // 跳转回原来页面
         // back方法不严谨
-        this.$router.back();
+        // this.$router.back();
+
+        this.$router.push(this.$route.query.redirect || '/')
       } catch (err) {
         if (err.response.status === 400) {
           this.$toast.fail('手机号或验证码错误');
